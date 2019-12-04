@@ -8,4 +8,4 @@ The approach and its applications are described in detail in the open access pub
 
 ## Developers
 
-The software is developed in a collaboration between the Max Planck Institute for Human Cognitive ad Brain Sciences, Leipzig, and the Wellcome Centre for Human Neuroimaging, UCL, London.
+The software is developed in a collaboration between the Max Planck Institute for Human Cognitive and Brain Sciences, Leipzig, and the Wellcome Centre for Human Neuroimaging, UCL, London.
