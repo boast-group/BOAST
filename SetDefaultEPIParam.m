@@ -1,20 +1,39 @@
 function epi_param = SetDefaultEPIParam
 
-our_epi.main_orientation = 'TRA';
-our_epi.fov = 0.192; % field of view in EPI 192 mm
-our_epi.base_res = 64;
-% slice thickness
-our_epi.d=2*10^-3; %Siemens pulse approximates Gaussian with 2 mm FWHM
-%our_epi.echo_spacing = 0.330; % for allegra
-our_epi.echo_spacing = 0.500; % echo spacing in ms
-our_epi.TC= 30; % ms
-our_epi.vx_epi=[3 3 3];
+% Updated 23/09/2024
+% by Shokoufeh Golshani
 
-our_epi.vx_epi = our_epi.vx_epi*10^-3;
-our_epi.echo_spacing = our_epi.echo_spacing*10^-3;
-our_epi.TC = our_epi.TC*10^-3;
-our_epi.TA = our_epi.echo_spacing*our_epi.base_res;
+% =========================================================================
+% This function sets the fixed parameters for the EPI protocol. 
+% These values can be modified as needed to suit specific requirements 
+% or preferences.
+% =========================================================================
+% main_orientation                : Slice oriantation
+%                                   'TRA' : transverse 
+%                                   'CRO' : coronal
+%                                   'SAG' : sagittal
+% fov                             : Field of view (in mm)
+% base_res                        : Basic resolution (Matrix size)
+% pe_neff                         : Effective phase encoding steps in
+%                                   Siemense scanner
+% delta_z                         : Full width at half-maximum (FWHM) 
+%                                   of the slice profile (in mm)
+% echo_spacing                    : Echo spacing (in ms)
+% echotime                        : Effective (central) echo time (in ms)
+% vox                             : voxel size (in mm) 
+%                                   1x3 array (x y z direction)
+% =========================================================================
 
-epi_param = our_epi;
+fixedEPIparam.main_orientation = 'TRA';
+fixedEPIparam.fov = 192;                         
+fixedEPIparam.base_res = 64;
+fixedEPIparam.pe_neff = 72;
+fixedEPIparam.delta_z = 2;         % FWHM for a Gaussian profile in Siemens 
+                                   % scanner using slice thickness = 3 mm
+fixedEPIparam.echo_spacing = 0.5;
+fixedEPIparam.echotime = 30; 
+fixedEPIparam.vox = [3 3 3];
+
+epi_param = fixedEPIparam;
 
 end
