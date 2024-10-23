@@ -1,11 +1,13 @@
 function res_vol3d = resize(vol3d, flag)
 
-% Updated on 28/09/2024
+% Updated 28/09/2024
 % By Shokoufeh Golshani
 
 % =========================================================================
-% This function reduces the Field matrix size by a factor of 3 through
-% averaging every three adjacent voxels
+% This function reduces the size of the Field matrix by a factor of 3 by 
+% averaging every group of three adjacent voxels. This process combines 
+% smaller neighboring voxels into a single larger voxel, effectively 
+% downscaling the matrix while preserving the overall data structure.
 % =========================================================================
 
 if flag == 0
@@ -26,4 +28,3 @@ else
 end
 
 end
-

@@ -1,21 +1,21 @@
 function BS = CalculateBS_TB(fm_dX, fm_dY, fm_dZ, epi_param_opt, epi_param_fix, scanner_param) 
 
-% ========================================================================
-% calculate BOLD sensitivity from fieldmap gradient
-% based on calc_BS_fm_atlas (NW)
+% =========================================================================
+% This function calculates BOLD sensitivity using field map gradients and 
+% a defined set of parameters.
 % Copyright (C) 2014-2018 Steffen Volz
 % Wellcome Trust Centre for Neuroimaging, London
 % and Max Planck Institute for Human Cognitive and Brain Sciences, Leipzig 
-% ========================================================================
+% =========================================================================
 
-% Updated 24/09/2024
+% Updated 28/09/2024
 % By Shokoufeh Golshani
 
 % =========================================================================
 % Default variables
 % =========================================================================
-gam = 2*pi*42.58;             % gyromagnetic ratio in MHz/Tesla for protons
-Larmor = gam/2/pi;
+gam = 2*pi*42.58*10^6;         % gyromagnetic ratio in Hz/Tesla for protons
+
   
 % =========================================================================
 % Compensation Gradients
@@ -28,6 +28,7 @@ Angle = -epi_param_opt.tilt/180*pi;
 
 % =========================================================================
 % Rotation matrix for converting gradient from XYZ to PRS
+% Refer to the Fig. 1 in the paper for more explanation (TRA > COR, Siemens convention)
 % =========================================================================
 if strcmp(epi_param_fix.main_orientation,'TRA') == 1
     pe_vec = [0 cos(Angle) sin(Angle)];
@@ -54,7 +55,7 @@ fGS = fm_dX*sl_vec(1) + fm_dY*sl_vec(2) + fm_dZ*sl_vec(3);
 % =========================================================================
 % Calculate the Q value which determines distortion and echo shift
 % =========================================================================
-Q = 1-(gam * epi_param_fix.echo_spacing/2/pi * epi_param_fix.fov * fGP);
+Q = 1 - (gam * epi_param_fix.echo_spacing/2/pi * epi_param_fix.fov * fGP);
 
 
 % =========================================================================
@@ -90,4 +91,3 @@ BS = BS.*shift_mask;
 
 
 end
-

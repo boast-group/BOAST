@@ -20,8 +20,8 @@ function epi_param = SetDefaultEPIParam
 %                                   of the slice profile (in mm)
 % echo_spacing                    : Echo spacing (in ms)
 % echotime                        : Effective (central) echo time (in ms)
-% vox                             : voxel size (in mm) 
-%                                   1x3 array (x y z direction)
+% vox                             : Voxel size (in mm) 
+%                                   (1x3) array (x y z direction)
 % =========================================================================
 
 fixedEPIparam.main_orientation = 'TRA';
